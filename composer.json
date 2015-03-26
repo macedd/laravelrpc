@@ -1,0 +1,23 @@
+{
+    "name": "thiagof/laravelrpc",
+    "description": "JsonRPC Client/Server services for Laravel 5",
+    "keywords": ["laravel", "jsonrpc", "rpc", "json-rpc", "client", "server"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thiago Fernandes",
+            "email": "thiago@internetbudi.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.0.*",
+        "fguillot/json-rpc": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Thiagof\\LaravelRPC\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
