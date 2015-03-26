@@ -27,7 +27,6 @@ class RpcServiceProvider extends ServiceProvider {
 		$this->publishes([
 			__DIR__.'/../config/rpc.php' => base_path('config/rpc.php'),
 		]);
-		$this->mergeConfigFrom(__DIR__.'/../config/rpc.php', 'rpc');
 
 		// Register Facades
         $loader = AliasLoader::getInstance();
@@ -42,6 +41,8 @@ class RpcServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+		$this->mergeConfigFrom(__DIR__.'/../config/rpc.php', 'rpc');
+		
 		$this->app->bindShared('JsonRpcClient', function($app) {
 			$options = config('rpc.client');
 
