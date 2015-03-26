@@ -42,7 +42,7 @@ class RpcServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->mergeConfigFrom(__DIR__.'/../config/rpc.php', 'rpc');
-		
+
 		$this->app->bindShared('JsonRpcClient', function($app) {
 			$options = config('rpc.client');
 
@@ -60,6 +60,15 @@ class RpcServiceProvider extends ServiceProvider {
 			return $server;
 		});
 
+	}
+
+	protected function mergeConfigFrom($path, $key='rpc')
+	{
+		$config = $this->app['config']->get($key, []);
+		$config_pkg = require $path;
+
+		$this->app['config']->set("$key.client", array_merge($config_pkg['client'], $config['client']));
+		$this->app['config']->set("$key.server", array_merge($config_pkg['server'], $config['server']));
 	}
 
 	/**
