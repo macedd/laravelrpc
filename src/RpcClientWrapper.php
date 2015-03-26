@@ -50,7 +50,7 @@ class RpcClientWrapper {
         $connection->ssl_verify_peer = $opts['ssl_verify_peer'];
         $connection->debug           = $opts['debug'];
 
-        if ($opts['username']) {
+        if (isset($opts['username']) && $opts['username']) {
             $connection->authentication($opts['username'], $opts['password']);
         }
 
