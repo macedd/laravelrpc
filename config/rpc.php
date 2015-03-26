@@ -6,7 +6,7 @@ return array(
         /**
          * Server URL
          */
-        'url' => 'http://example.com/jsonrpc',
+        'url' => env('RPC_URL', 'http://example.com/jsonrpc'),
 
         /**
          * HTTP client timeout
@@ -32,7 +32,7 @@ return array(
         /**
          * SSL certificates verification
          */
-        'ssl_verify_peer' => true,
+        'ssl_verify_peer' => env('RPC_SSL', true),
     ],
 
     'server' => [
