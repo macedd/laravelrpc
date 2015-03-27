@@ -11,7 +11,7 @@ return array(
         /**
          * HTTP client timeout
          */
-        'timeout'    => 7,
+        'timeout'    => 5,
 
         /**
          * Custom HTTP headers

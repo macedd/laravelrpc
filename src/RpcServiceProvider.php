@@ -23,7 +23,7 @@ class RpcServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		// Config setup
+		// Publish config file setup
 		$this->publishes([
 			__DIR__.'/../config/rpc.php' => base_path('config/rpc.php'),
 		]);
@@ -43,20 +43,19 @@ class RpcServiceProvider extends ServiceProvider {
 	{
 		$this->mergeConfigFrom(__DIR__.'/../config/rpc.php', 'rpc');
 
-		$this->app->bindShared('JsonRpcClient', function($app) {
+		// Shared Client
+		$this->app->bindShared('JsonRpcClient', function($app)
+		{
 			$options = config('rpc.client');
-
-			$client = new RpcClientWrapper();
-			$client->configure($options);
-
+			$client = new RpcClientWrapper($options);
 			return $client;
 		});
 
-		$this->app->bindShared('JsonRpcServer', function($app) {
+		// Shared Server
+		$this->app->bindShared('JsonRpcServer', function($app, $payload = '', array $callbacks = array(), array $classes = array())
+		{
 			$options = config('rpc.server');
-
-			$server = new JsonRPC\Server();
-			
+			$server = new JsonRPC\Server($payload, $callbacks, $classes);
 			return $server;
 		});
 
