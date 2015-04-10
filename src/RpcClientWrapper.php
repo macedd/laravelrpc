@@ -2,6 +2,7 @@
 
 namespace Thiagof\LaravelRPC;
 
+use Log;
 use JsonRPC;
 
 /**
@@ -45,7 +46,12 @@ class RpcClientWrapper {
     {
         $opts = $this->config;
 
-        $connection = new JsonRPC\Client($opts['url'], $opts['timeout'], $opts['headers']);
+        // Headers format
+        $headers = [];
+        foreach ($opts['headers'] as $key => $value)
+            $headers[] = "$key: $value";
+
+        $connection = new JsonRPC\Client($opts['url'], $opts['timeout'], $headers);
 
         $connection->ssl_verify_peer = $opts['ssl_verify_peer'];
         $connection->debug           = $opts['debug'];
@@ -65,6 +71,8 @@ class RpcClientWrapper {
      */
     protected function request($method, $params)
     {
+        Log::debug('RpcClient call', ['method'=>$method, 'params'=>$params, 'config'=>$this->config]);
+
         return call_user_func_array(
                 [$this->connection(), 'execute'],
                 array_merge([$method], $params)
