@@ -2,7 +2,7 @@
 
 namespace Thiagof\LaravelRPC;
 
-use Log;
+use Log, Cache;
 use JsonRPC;
 
 /**
@@ -90,7 +90,33 @@ class RpcClientWrapper {
         // named args only
         // $arguments = $arguments[0];
         
+        
+        if ($this->cache_allowed($method_name))
+        {
+            $key = "rpc-$method_name-". md5(json_encode($arguments));
+            $time = $this->config['cache_duration'];
+
+            $request = [$this, 'request'];
+
+            return Cache::remember($key, $time, function() use ($method_name, $arguments, $request) {
+                return $request($method_name, $arguments);
+            });
+        }
+        
         return $this->request($method_name, $arguments);
+    }
+
+    protected function cache_allowed($method_name) {
+        $allow = $this->config['cache'];
+        if (!is_array($allow))
+            $allow = [$allow];
+
+        if (in_array('*', $allow))
+            return true;
+        if (in_array($method_name, $allow))
+            return true;
+
+        return false;
     }
     
 }

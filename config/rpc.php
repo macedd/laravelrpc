@@ -33,6 +33,14 @@ return array(
          * SSL certificates verification
          */
         'ssl_verify_peer' => env('RPC_SSL', true),
+
+        /**
+         * Methods to Cache
+         * Allow '*' for all, and 'method_name'
+         */
+        'cache' => '*',
+
+        'cache_duration' => 15,
     ],
 
     'server' => [
