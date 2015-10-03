@@ -11,7 +11,7 @@ Configuration
     # include the provider
     'providers' => array(
         [...]
-        'Thiagof\JsonRPC\JsonRPCServiceProvider',
+        'Thiagof\LaravelRPC\RpcServiceProvider',
     );
 
     # laravel config
