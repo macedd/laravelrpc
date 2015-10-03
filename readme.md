@@ -1,9 +1,7 @@
 Installation
 
     # composer
-    composer require thiagof/laravel-jsonrpc
-    # laravel config
-    php artisan config:publish thiagof/laravel-jsonrpc
+    composer require thiagof/laravelrpc
 
 
 Configuration
@@ -15,3 +13,6 @@ Configuration
         [...]
         'Thiagof\JsonRPC\JsonRPCServiceProvider',
     );
+
+    # laravel config
+    php artisan vendor:publish
