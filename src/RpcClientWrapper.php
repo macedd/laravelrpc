@@ -71,12 +71,15 @@ class RpcClientWrapper {
      */
     protected function request($method, $params)
     {
-        Log::debug('RpcClient call', ['method'=>$method, 'params'=>$params, 'config'=>$this->config]);
-
-        return call_user_func_array(
+        $response = call_user_func_array(
                 [$this->connection(), 'execute'],
                 array_merge([$method], $params)
             );
+
+        if ($this->config['debug'])
+            Log::debug('RpcClient call', ['method'=>$method, 'params'=>$params, 'config'=>$this->config, 'response'=>$response]);
+
+        return $response;
     }
 
     /**
