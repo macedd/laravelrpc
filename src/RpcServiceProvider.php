@@ -25,7 +25,7 @@ class RpcServiceProvider extends ServiceProvider {
 	{
 		// Publish config file setup
 		$this->publishes([
-			__DIR__.'/../config/rpc.php' => base_path('config/rpc.php'),
+			__DIR__.'/../config/rpc.php' => config_path('rpc.php'),
 		]);
 
 		// Register Facades
@@ -59,15 +59,6 @@ class RpcServiceProvider extends ServiceProvider {
 			return $server;
 		});
 
-	}
-
-	protected function mergeConfigFrom($path, $key='rpc')
-	{
-		$config = $this->app['config']->get($key, []);
-		$config_pkg = require $path;
-
-		$this->app['config']->set("$key.client", array_merge($config_pkg['client'], $config['client']));
-		$this->app['config']->set("$key.server", array_merge($config_pkg['server'], $config['server']));
 	}
 
 	/**
