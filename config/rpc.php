@@ -36,9 +36,9 @@ return array(
 
         /**
          * Methods to Cache
-         * Allow '*' for all, and 'method_name'
+         * '*' to allow all, and 'method_name' to single method
          */
-        'cache' => '*',
+        'cache' => null,
 
         'cache_duration' => 15,
     ],
