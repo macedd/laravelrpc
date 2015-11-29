@@ -25,7 +25,7 @@ class RpcServiceProvider extends ServiceProvider {
 	{
 		// Publish config file setup
 		$this->publishes([
-			__DIR__.'/../config/rpc.php' => base_path('config/rpc.php'),
+			__DIR__.'/../config/rpc.php' => config_path('rpc.php'),
 		]);
 
 		// Register Facades
