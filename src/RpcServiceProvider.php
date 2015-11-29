@@ -46,7 +46,7 @@ class RpcServiceProvider extends ServiceProvider {
 		// Shared Client
 		$this->app->bindShared('JsonRpcClient', function($app)
 		{
-			$options = config('rpc.client');
+			$options = $this->app['config']->get('rpc.client');
 			$client = new RpcClientWrapper($options);
 			return $client;
 		});
@@ -54,7 +54,7 @@ class RpcServiceProvider extends ServiceProvider {
 		// Shared Server
 		$this->app->bindShared('JsonRpcServer', function($app, $payload = '', array $callbacks = array(), array $classes = array())
 		{
-			$options = config('rpc.server');
+			$options = $this->app['config']->get('rpc.server');
 			$server = new JsonRPC\Server($payload, $callbacks, $classes);
 			return $server;
 		});
@@ -65,9 +65,9 @@ class RpcServiceProvider extends ServiceProvider {
 	{
 		$config = $this->app['config']->get($key, []);
 		$config_pkg = require $path;
+		$config = array_merge_recursive($config_pkg, $config);
 
-		$this->app['config']->set("$key.client", array_merge($config_pkg['client'], $config['client']));
-		$this->app['config']->set("$key.server", array_merge($config_pkg['server'], $config['server']));
+		$this->app['config']->set($key, $config);
 	}
 
 	/**
