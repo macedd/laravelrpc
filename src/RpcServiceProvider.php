@@ -52,10 +52,13 @@ class RpcServiceProvider extends ServiceProvider {
 		});
 
 		// Shared Server
-		$this->app->bindShared('JsonRpcServer', function($app, $payload = '', array $callbacks = array(), array $classes = array())
+		$this->app->bind('JsonRpcServer', function($app, $params=[])
 		{
 			$options = $this->app['config']->get('rpc.server');
-			$server = new JsonRPC\Server($payload, $callbacks, $classes);
+
+			$class = new \ReflectionClass(JsonRPC\Server::class);
+			$server = $class->newInstanceArgs($params);
+
 			return $server;
 		});
 
