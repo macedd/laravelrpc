@@ -27,5 +27,15 @@ Setup your Client/Server properties in your app `config/rpc.php`
 
 ### Usage
 
+The Client
+
     use RpcClient;
     $result = RpcClient::myServerMethod();
+
+The Server
+    
+    Route::post('rpc', function() {
+      $server = app('JsonRpcServer');
+      $server->attach(new MyRpcMethods);
+      $server->execute();
+    });
