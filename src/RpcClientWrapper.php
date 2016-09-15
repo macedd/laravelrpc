@@ -51,10 +51,17 @@ class RpcClientWrapper {
         foreach ($opts['headers'] as $key => $value)
             $headers[] = "$key: $value";
 
-        $connection = new JsonRPC\Client($opts['url'], $opts['timeout'], $headers);
+        $client = with(new JsonRPC\HttpClient($opts['url']))
+                    ->withHeaders($headers);
 
-        $connection->ssl_verify_peer = $opts['ssl_verify_peer'];
-        $connection->debug           = $opts['debug'];
+        if ($opts['timeout'] == false)
+            $client->withTimeout($opts['timeout']);
+        if ($opts['ssl_verify_peer'] == false)
+            $client->withoutSslVerification();
+        if ($opts['debug'] == true)
+            $client->withDebug();
+
+        $connection = new JsonRPC\Client($opts['url'], false, $client);
 
         if (isset($opts['username']) && $opts['username']) {
             $connection->authentication($opts['username'], $opts['password']);
