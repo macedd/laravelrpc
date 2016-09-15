@@ -5,6 +5,9 @@
 
     # laravel config
     php artisan config:publish thiagof/laravelrpc
+    # Laravel > 5.1
+    php artisan vendor:publish --provider="Thiagof\LaravelRPC\RpcServiceProvider"
+
 
 
 ### Configuration
