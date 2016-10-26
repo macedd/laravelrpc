@@ -42,3 +42,8 @@ The Server
       $server->attach(new MyRpcMethods);
       $server->execute();
     });
+
+
+### Further underlying API Reference
+
+Please refer to [fguillot/json-rpc](https://github.com/fguillot/JsonRPC)
