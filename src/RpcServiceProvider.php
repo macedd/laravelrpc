@@ -44,7 +44,7 @@ class RpcServiceProvider extends ServiceProvider {
 		$this->mergeConfigFrom(__DIR__.'/../config/rpc.php', 'rpc');
 
 		// Shared Client
-		$this->app->bindShared('JsonRpcClient', function($app)
+		$this->app->singleton('JsonRpcClient', function($app)
 		{
 			$options = $this->app['config']->get('rpc.client');
 			$client = new RpcClientWrapper($options);
