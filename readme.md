@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/thiagof/laravelrpc.svg?style=svg)](https://circleci.com/gh/thiagof/laravelrpc)
+
 ### Installation
 
     # composer
