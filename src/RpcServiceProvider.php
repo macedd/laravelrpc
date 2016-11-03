@@ -66,9 +66,13 @@ class RpcServiceProvider extends ServiceProvider {
 
 	protected function mergeConfigFrom($path, $key='rpc')
 	{
-		$config = $this->app['config']->get($key, []);
+		$config_usr = $this->app['config']->get($key, []);
 		$config_pkg = require $path;
-		$config = array_merge_recursive($config_pkg, $config);
+
+		// merge config arrays
+		$config = [];
+		$config['client'] = array_merge($config_pkg['client'], @$config_usr['client'] ?: []);
+		$config['server'] = array_merge($config_pkg['server'], @$config_usr['server'] ?: []);
 
 		$this->app['config']->set($key, $config);
 	}
