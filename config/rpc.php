@@ -11,7 +11,7 @@ return array(
         /**
          * HTTP client timeout
          */
-        'timeout'    => 5,
+        'timeout'    => env('RPC_TIMEOUT', 15),
 
         /**
          * Custom HTTP headers
@@ -27,7 +27,7 @@ return array(
         /**
          * Enable debug output to the php error log
          */
-        'debug' => false,
+        'debug' => env('RPC_DEBUG', false),
 
         /**
          * SSL certificates verification
@@ -38,9 +38,9 @@ return array(
          * Methods to Cache
          * '*' to allow all, and 'method_name' to single method
          */
-        'cache' => null,
+        'cache' => env('RPC_CACHE', null),
 
-        'cache_duration' => 15,
+        'cache_duration' => env('RPC_CACHE_TIME', 15),
     ],
 
     'server' => [
