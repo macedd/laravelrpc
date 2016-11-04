@@ -55,6 +55,7 @@ class RpcClientWrapper {
 
         $connection->ssl_verify_peer = $opts['ssl_verify_peer'];
         $connection->debug           = $opts['debug'];
+        $connection->named_arguments = isset($opts['named_arguments']) && $opts['named_arguments']===true;
 
         if (isset($opts['username']) && $opts['username']) {
             $connection->authentication($opts['username'], $opts['password']);
@@ -75,7 +76,7 @@ class RpcClientWrapper {
 
         return call_user_func_array(
                 [$this->connection(), 'execute'],
-                array_merge([$method], $params)
+                [$method,$params]
             );
     }
 
