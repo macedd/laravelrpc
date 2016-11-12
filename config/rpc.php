@@ -35,6 +35,13 @@ return array(
         'ssl_verify_peer' => env('RPC_SSL', true),
 
         /**
+         * If the only argument passed to a function is an array
+         * assume it contains named arguments
+         *
+         */
+        'named_arguments' => false,
+
+        /**
          * Methods to Cache
          * '*' to allow all, and 'method_name' to single method
          */
