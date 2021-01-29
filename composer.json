@@ -18,7 +18,7 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": ">=5.0",
-        "fguillot/json-rpc": "1.0.*"
+        "matasarei/json-rpc": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
