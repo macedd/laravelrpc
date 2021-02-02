@@ -34,5 +34,4 @@
             "tests/TestCase.php"
         ]
     },
-    "minimum-stability": "stable"
 }
