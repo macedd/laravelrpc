@@ -1,5 +1,5 @@
 {
-    "name": "thiagof/laravelrpc",
+    "name": "cuctemeh/laravelrpc",
     "description": "JsonRPC Client/Server services for Laravel 5",
     "keywords": ["laravel", "jsonrpc", "rpc", "json-rpc", "client", "server"],
     "license": "MIT",
