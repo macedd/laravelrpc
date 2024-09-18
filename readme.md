@@ -2,10 +2,12 @@
 
 ### Installation
 
-    # composer
+With composer
+
     composer require thiagof/laravelrpc
 
-    # laravel config
+Laravel configuration
+
     php artisan config:publish thiagof/laravelrpc
     # Laravel > 5.1
     php artisan vendor:publish --provider="Thiagof\LaravelRPC\RpcServiceProvider"
@@ -14,14 +16,15 @@
 
 ### Configuration
 
-    # app/config/app.php
-    # include the provider
+Include the provider in `app/config/app.php`:
+
     'providers' => array(
         [...]
         'Thiagof\LaravelRPC\RpcServiceProvider',
     );
 
-    # include the alias
+Also include the alias
+
     'providers' => array(
         [...]
         'Thiagof\LaravelRPC\RpcClientFacade',
@@ -34,11 +37,13 @@ Setup your Client/Server properties in your app `config/rpc.php`
 
 The Client
 
+    <?php
     use RpcClient;
     $result = RpcClient::myServerMethod();
 
 The Server
     
+    <?php
     Route::post('rpc', function() {
       $server = app('JsonRpcServer');
       $server->attach(new MyRpcMethods);
@@ -48,4 +53,4 @@ The Server
 
 ### Further underlying API Reference
 
-Please refer to [fguillot/json-rpc](https://github.com/fguillot/JsonRPC)
+Please refer to [fguillot/json-rpc](https://github.com/matasarei/json-rpc/tree/v1.0.3)
