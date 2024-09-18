@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/thiagof/laravelrpc.svg?style=svg)](https://circleci.com/gh/thiagof/laravelrpc)
+[![CircleCI](https://circleci.com/gh/macedd/laravelrpc.svg?style=svg)](https://circleci.com/gh/macedd/laravelrpc)
 
 ### Installation
 
